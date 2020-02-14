@@ -1,0 +1,5 @@
+numpy==1.16.2
+opencv-contrib-python==4.0.0.21
+
+
+how to: python ./pyimgscan.py -i ./test/1.png
