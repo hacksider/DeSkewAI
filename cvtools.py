@@ -64,9 +64,7 @@ def simple_erode(img):
     """
 
     ekernel = np.ones((3, 3), np.uint8)
-    eroded = cv2.erode(img, ekernel, iterations=1)
-
-    return eroded
+    return cv2.erode(img, ekernel, iterations=1)
 
 
 def simple_dilate(img):
@@ -77,9 +75,7 @@ def simple_dilate(img):
     """
 
     dkernel = np.ones((3, 3), np.uint8)
-    dilated = cv2.dilate(img, dkernel, iterations=1)
-
-    return dilated
+    return cv2.dilate(img, dkernel, iterations=1)
 
 
 def brightness_contrast(img, mult, add):
@@ -92,12 +88,7 @@ def brightness_contrast(img, mult, add):
       pixels; set by "add" parameter, use negative values for subtraction;
     """
 
-    # multiply pixels by "mult", add by "add";
-    # the multiplication will increase contrast, and adding/subtracting will
-    # adjust the brightness
-    adjusted = cv2.convertScaleAbs(img, alpha=float(mult), beta=float(add))
-
-    return adjusted
+    return cv2.convertScaleAbs(img, alpha=float(mult), beta=float(add))
 
 
 # imutils resize() function.
@@ -133,11 +124,7 @@ def resize(img, width=None, height=None, inter=cv2.INTER_AREA):
         r = width / float(w)
         dim = (width, int(h * r))
 
-    # resize the image
-    resized = cv2.resize(img, dim, interpolation=inter)
-
-    # return the resized image
-    return resized
+    return cv2.resize(img, dim, interpolation=inter)
 
 
 def getoutlines(img):
@@ -152,8 +139,7 @@ def getoutlines(img):
       we will only take the contours (outlines) for the current application
     """
 
-    outlines = cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[0]
-    return outlines
+    return cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[0]
 
 
 # 4-POINT PERSPECTIVE TRANSFORM FUNCTION SET.
@@ -238,6 +224,4 @@ def perspective_transform(img, pts):
     # using OpenCV, calculate a transform matrix then apply it to create
     # the corrected image
     matrix = cv2.getPerspectiveTransform(corners_old, corners_corrected)
-    img_corrected = cv2.warpPerspective(img, matrix, (maxW, maxH))
-
-    return img_corrected
+    return cv2.warpPerspective(img, matrix, (maxW, maxH))
